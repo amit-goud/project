@@ -1,0 +1,15 @@
+import socket
+s= socket.socket()
+host= socket.gethostname()
+port=8080
+s.bind((host,port))
+s.listen(1)
+print(host)
+print("Waiting for incoming connection")
+conn, addr= s.accept()
+print(addr, "Connected to the server")
+filename=input(str("Enter file name :"))
+file=open(filename,'rb')
+fileread=file.read(1024)
+conn.send(fileread)
+print("Sent Successfully")
